@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Link Check: URL risk analyzer</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main>
+    <h1>Check a link before you click it</h1>
+    <p class="lede">Paste a URL to see how suspicious it looks and why. Each warning sign gets a plain-language explanation.</p>
+
+    <form id="form" autocomplete="off">
+      <label for="url">URL to check</label>
+      <div class="row">
+        <input id="url" name="url" type="text" inputmode="url" spellcheck="false" maxlength="2048"
+               placeholder="http://login.example.com@203.0.113.5/verify" required>
+        <button type="submit" id="go">Check link</button>
+      </div>
+    </form>
+    <p id="mode" class="mode" aria-live="polite"></p>
+
+    <section id="result" aria-live="polite" hidden>
+      <div class="verdict">
+        <div class="gauge" id="gauge" role="img">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="track" cx="60" cy="60" r="54"></circle>
+            <circle class="arc" id="arc" cx="60" cy="60" r="54" transform="rotate(-90 60 60)"></circle>
+          </svg>
+          <p class="pct"><span id="score-num"></span><span class="sign">%</span></p>
+        </div>
+        <div class="verdict-text">
+          <p class="level" id="level"></p>
+          <p class="sub">Risk score: higher means more warning signs. It is not the probability that a site is malicious.</p>
+          <div class="scale" id="scale"><div class="marker" id="marker"></div></div>
+          <ul class="legend" id="legend"></ul>
+        </div>
+      </div>
+      <p class="checked">Checked: <code id="checked-url"></code></p>
+
+      <h2>What we found</h2>
+      <ul id="findings" class="findings"></ul>
+
+      <div id="chain-wrap" hidden>
+        <h2>Where the link goes</h2>
+        <p class="note">Addresses are defanged (hxxp, [.]) so they can't be clicked by accident.</p>
+        <ol id="chain" class="chain"></ol>
+      </div>
+    </section>
+
+    <p id="error" class="error" role="alert" hidden></p>
+
+    <footer>A heuristic score, not a guarantee. A low score doesn't mean a link is safe, and a high one doesn't prove it's malicious.</footer>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
