@@ -4,7 +4,7 @@ A web tool that rates how suspicious a URL looks and explains why. Paste a link,
 
 | Low risk | High risk |
 |---|---|
-| ![Low risk result](Screenshot-low.png) | ![High risk result](Screenshot-high.png) |
+| ![Low risk result](Screenshot-high.png) | ![High risk result](Screenshot-low.png) |
 
 ## Features
 
